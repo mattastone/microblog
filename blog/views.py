@@ -3,8 +3,7 @@ from .models import Post
 
 class PublishedPostMixin(object):
     def get_queryset(self):
-        queryset = super(PublishedPostMixin, self).get_queryset()
-        return queryset.filter(published=True)
+        return self.model.objects.live()
 
 class PostListView(PublishedPostMixin,ListView):
     model = Post
